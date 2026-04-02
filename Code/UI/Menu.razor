@@ -1,0 +1,175 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+    <div class="container-left">
+        @switch (currentScreen)
+        {
+
+            case Screen.Menu:
+            
+            break;
+
+            case Screen.SelectCharacter:
+                <div class="heading">
+                    <h1>Select Character</h1>
+                    <h2>Choose your Identity</h2>
+                </div>
+
+                <div class="center-content">
+                    <div class="character-slots">
+                        @for (int i = 1; i <= characterSlots; i++)
+                        {
+                            var slot = i;
+                            <button class="slot @(selectedSlot == slot ? "active" : "")" onclick="@(() => SelectSlot(slot))">
+                                Slot @slot @(PlayerData.Load(Game.SteamId, slot) != null ? "●" : "○")
+                            </button>
+                        }
+                    </div>
+
+                    <div class="character-info">
+                        @if (GetCharacterForSlot(selectedSlot) is PlayerData data)
+                        {
+                            <span class="name">@data.FirstName @data.LastName</span>
+                            <span class="rank">Rank: @data.Rank</span>
+                            <span class="age">Age: @data.Age</span>
+                            <span class="cash">@($"Cash: ${data.Cash}")</span>
+                            <span class="bank">@($"Bank: ${data.Bank}")</span>
+                        }
+                        else
+                        {
+                            <span class="name">Empty Slot</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div class="prompts">
+                        @* ✅ Only show Create if selected slot is empty *@
+                        @if (GetCharacterForSlot(selectedSlot) == null)
+                        {
+                            <button onclick="@(() => SwitchScreen(Screen.CreateCharacter))">Create New Character</button>
+                        }
+                        @* ✅ Only show Load/Delete if selected slot has a character *@
+                        @if (GetCharacterForSlot(selectedSlot) != null)
+                        {
+                            <button onclick="@(() => LoadCharacter(selectedSlot))">Load Character</button>
+                            <button onclick="@(() => DeleteCharacter(selectedSlot))">Delete</button>
+                        }
+                    </div>
+                </div>
+                break;
+
+            case Screen.CreateCharacter:
+                <div class="heading">
+                    <h1>Create Character</h1>
+                    <h2>Build your Identity</h2>
+                </div>
+
+                <div class="center-content">
+                    <div class="inputs">
+                        <TextEntry @ref="FirstNameEntry" Placeholder="First Name" />
+                        <TextEntry @ref="LastNameEntry" Placeholder="Last Name" />
+                        <TextEntry @ref="AgeEntry" Placeholder="Age" />
+                    </div>
+
+                    <div class="footer">
+                        <button onclick="@CreateCharacter">Create</button>
+                        <button onclick="@(() => SwitchScreen(Screen.SelectCharacter))">Back</button>
+                    </div>
+                </div>
+                break;
+        }
+    </div>
+</root>
+
+@code
+{
+    public enum Screen
+    {
+        Menu,
+        SelectCharacter,
+        CreateCharacter
+    }
+
+    private Screen currentScreen = Screen.Menu;
+    private int selectedSlot = 1;
+    public int characterSlots = 2;
+
+    private TextEntry FirstNameEntry { get; set; }
+    private TextEntry LastNameEntry { get; set; }
+    private TextEntry AgeEntry { get; set; }
+
+    // ✅ Removed characters list — load directly from disk by slot to avoid index/slot mismatch
+
+    private void SwitchScreen(Screen screen)
+    {
+        currentScreen = screen;
+    }
+
+    private void SelectSlot(int slot)
+    {
+        selectedSlot = slot;
+    }
+
+    // ✅ Load directly by slot number — no more list index bugs
+    private PlayerData GetCharacterForSlot(int slot)
+    {
+        return PlayerData.Load(Game.SteamId, slot);
+    }
+
+    private void CreateCharacter()
+    {
+        // ✅ Check the actual slot, not a list count
+        if (GetCharacterForSlot(selectedSlot) != null)
+            return;
+
+        var firstName = FirstNameEntry?.Text?.Trim();
+        var lastName = LastNameEntry?.Text?.Trim();
+        var ageText = AgeEntry?.Text?.Trim();
+
+        if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            return;
+
+        if (!int.TryParse(ageText, out var age))
+            return;
+
+        var newCharacter = new PlayerData
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Age = age,
+            Story = "",
+            Cash = 500f,  // ✅ Use the default values defined in PlayerData
+            Bank = 2000f
+        };
+
+        // ✅ Save to the selected slot, not characters.Count
+        PlayerData.Save(newCharacter, Game.SteamId, selectedSlot);
+        SwitchScreen(Screen.SelectCharacter);
+    }
+
+    private void DeleteCharacter(int slot)
+    {
+        // ✅ New: delete the file for this slot
+        var path = $"{Game.SteamId}_player_slot{slot}.json";
+        if (FileSystem.Data.FileExists(path))
+            FileSystem.Data.DeleteFile(path);
+    }
+
+    private void LoadCharacter(int slot)
+    {
+        var character = GetCharacterForSlot(slot);
+        if (character == null)
+        {
+            Log.Warning($"No character in slot {slot}");
+            return;
+        }
+
+        // ✅ Store before scene load — survives the transition
+        Session.PendingCharacter = character;
+        Game.ActiveScene.LoadFromFile("scenes/main.scene");
+    }
+}

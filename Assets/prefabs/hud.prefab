@@ -1,0 +1,58 @@
+{
+  "RootObject": {
+    "__guid": "69ec8932-a7ed-4907-9bbf-4e865d3b5f76",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "HUD",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Sandbox.ScreenPanel",
+        "__guid": "2fdfb87e-da2c-4520-95cc-3cedf2d00522",
+        "__enabled": true,
+        "Flags": 0,
+        "AutoScreenScale": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Opacity": 1,
+        "Scale": 1,
+        "ScaleStrategy": "ConsistentHeight",
+        "TargetCamera": null,
+        "ZIndex": 100
+      },
+      {
+        "__type": "Sandbox.HUD",
+        "__guid": "529bf42f-0cff-4202-96e2-f87d2571fa40",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
+    "Children": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [],
+  "__version": 2
+}

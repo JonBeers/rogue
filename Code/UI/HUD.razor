@@ -1,0 +1,83 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System.Text
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+	<div class="container">
+		<div class="name"></div>
+		<div class="armor">
+			@if (PlayerInfo == null)
+			{
+				<div class="bar" style="background-color: red; width: 100%"></div>
+			}
+			else
+			{
+				@for (int i = 0; i < ArmorBars; i++)
+				{
+					float barMin = i * BarAmount;
+					float barMax = (i + 1) * BarAmount;
+					float fill = 0f;
+
+					if (PlayerInfo.Armor >= barMax)
+						fill = 100f;
+					else if (PlayerInfo.Armor > barMin)
+						fill = ((PlayerInfo.Armor - barMin) / BarAmount) * 100f;
+
+					if (fill > 0f)
+					{
+						<div class="bar" style="background-color: rgb(0, 132, 255); width: @fill%"></div>
+					}
+					else
+					{
+						<div class="bar"></div>
+					}
+				}
+			}
+		</div>
+
+		<div class="health">
+			@if (PlayerInfo == null)
+			{
+				<div class="health-bar" style="width: 100%; background-color: red;"></div>
+			}
+			else
+			{
+				float healthPercent = (PlayerInfo.Health / 100f) * 100f;
+				<div class="health-bar" style="width: @healthPercent%;"></div>
+			}
+		</div>
+		
+	</div>
+</root>
+
+@code
+{
+    public PlayerInfo PlayerInfo { get; set; }
+    public int ArmorBars = 4;
+    public float BarAmount = 25f;
+
+    private void FindPlayerInfo()
+    {
+        PlayerInfo = Scene.GetAllComponents<PlayerInfo>().FirstOrDefault();
+    }
+
+    protected override void OnTreeFirstBuilt()
+    {
+        FindPlayerInfo();
+		
+    }
+
+    protected override void OnUpdate()
+    {
+        if (PlayerInfo == null)
+        {
+            FindPlayerInfo();
+        }
+
+		Log.Info(PlayerInfo.Health);
+
+        StateHasChanged();
+    }
+}
