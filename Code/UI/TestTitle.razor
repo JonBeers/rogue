@@ -1,0 +1,25 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Sandbox
+
+<root>
+    <div class="icon">
+        <img src="images/icons/@Icon"/>
+    </div>
+    <div class="info">
+        <div class="heading">@Heading</div>
+        <div class="description">@Description</div>
+    </div>
+</root>
+
+@code
+{
+
+    public string Icon {get; set;} 
+    public string Heading {get; set;} = "Heading";
+    public string Description {get; set;} = "lorem somthing somethin";
+
+
+
+}

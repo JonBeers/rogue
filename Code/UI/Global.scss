@@ -1,0 +1,78 @@
+// ============================================================
+// global.scss — Design System Color Variables
+// ============================================================
+
+// ------------------------------------------------------------
+// Primary
+// ------------------------------------------------------------
+
+$primary-10: #672bac;   // RGB: 226, 142, 225
+$primary-20: #162F65;   // RGB: 22, 47, 101
+$primary-30: #0F2043;   // RGB: 15, 32, 67
+$accent: #2bc592;       // RGB: 146, 207, 98
+
+
+// ------------------------------------------------------------
+// Secondary
+// ------------------------------------------------------------
+
+$secondary-0:  #FFFFFF;  // RGB: 255, 255, 255
+$secondary-10: #92CF62;  // RGB: 146, 207, 98
+$secondary-20: #CF6262;  // RGB: 207, 98, 98
+$secondary-30: #8E9EDF;  // RGB: 142, 158, 223
+$secondary-40: #A961AD;  // RGB: 169, 97, 173
+$secondary-50: #495CA8;  // RGB: 73, 92, 168
+$secondary-60: #FF8528;  // RGB: 255, 133, 40
+$secondary-70: #C25400;  // RGB: 194, 84, 0
+
+
+// ------------------------------------------------------------
+// Halloween Special
+// ------------------------------------------------------------
+
+$halloween-10: #FF8528;  // RGB: 255, 133, 40
+$halloween-20: #C25400;  // RGB: 194, 84, 0
+$halloween-30: #2B2F43;  // RGB: 43, 47, 67
+$halloween-40: #0F1218;  // RGB: 15, 18, 24
+$halloween-50: #020307;  // RGB: 2, 3, 7
+
+.text-entry
+{
+    padding: 1rem;
+    background-color: $primary-30;
+    border-radius: .5rem;
+    
+    &:focus
+    {
+        border: 1px solid green;
+    }
+}
+
+.drop-down
+{
+    padding: 1rem;
+    background-color: $primary-30;
+    border-radius: .5rem;
+    height: 40px;
+}
+
+.button
+{
+    padding: 1rem;
+    font-size: 16px;
+    border-radius: .5rem;
+    border: 2px solid $primary-30;
+    cursor: pointer;
+    
+}
+
+.pink
+{
+    background-color: $primary-10;
+}
+
+.blue
+{
+    background-color: $secondary-50;
+}
+
