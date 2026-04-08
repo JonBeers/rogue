@@ -46,6 +46,128 @@
                 "component_type": "PlayerInfo"
               }
             }
+          },
+          {
+            "Id": {
+              "Type": "Component",
+              "IdValue": "45cf7a94-a482-4de9-baa8-a6ea0d80f418"
+            },
+            "Parent": {
+              "Type": "GameObject",
+              "IdValue": "2fdbb03e-858e-453e-9369-2847087ee641"
+            },
+            "PreviousElement": {
+              "Type": "Component",
+              "IdValue": "8868e694-a06c-4ed0-9bc9-b3b000b8f39d"
+            },
+            "ContainerProperty": "Components",
+            "IsContainerArray": true,
+            "Data": {
+              "__type": "Inventory",
+              "__guid": "45cf7a94-a482-4de9-baa8-a6ea0d80f418",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          },
+          {
+            "Id": {
+              "Type": "GameObject",
+              "IdValue": "463efdf2-1ed3-4c98-be1c-0176ab4f4d76"
+            },
+            "Parent": {
+              "Type": "GameObject",
+              "IdValue": "2f67b9a1-cc15-4b6b-bf8b-ea2e45f81bb0"
+            },
+            "PreviousElement": null,
+            "ContainerProperty": "Children",
+            "IsContainerArray": true,
+            "Data": {
+              "__guid": "463efdf2-1ed3-4c98-be1c-0176ab4f4d76",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Clothing - y_front_pants_white",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "clothing",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": []
+            }
+          },
+          {
+            "Id": {
+              "Type": "Component",
+              "IdValue": "35ae84f4-36e4-4318-a108-4bc3958b1ed9"
+            },
+            "Parent": {
+              "Type": "GameObject",
+              "IdValue": "463efdf2-1ed3-4c98-be1c-0176ab4f4d76"
+            },
+            "PreviousElement": null,
+            "ContainerProperty": "Components",
+            "IsContainerArray": true,
+            "Data": {
+              "__type": "Sandbox.SkinnedModelRenderer",
+              "__guid": "35ae84f4-36e4-4318-a108-4bc3958b1ed9",
+              "__enabled": true,
+              "Flags": 0,
+              "AnimationGraph": null,
+              "BodyGroups": 18446744073709551615,
+              "BoneMergeTarget": {
+                "_type": "component",
+                "component_id": "8d3769a3-8df8-4d59-addb-a4ec8082fe77",
+                "go": "2f67b9a1-cc15-4b6b-bf8b-ea2e45f81bb0",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "CreateAttachments": false,
+              "CreateBoneObjects": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/citizen_clothes/underwear/y_front_pants/models/y_front_pants_m_human.vmdl",
+              "Morphs": {},
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Parameters": {
+                "bools": {},
+                "ints": {},
+                "floats": {},
+                "vectors": {},
+                "rotations": {}
+              },
+              "PlaybackRate": 1,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Sequence": {
+                "Name": null,
+                "Looping": true,
+                "Blending": false
+              },
+              "Tint": "1,1,1,1",
+              "UseAnimGraph": true
+            }
           }
         ],
         "RemovedObjects": [],
@@ -73,6 +195,22 @@
             },
             "Property": "Enabled",
             "Value": false
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "8d3769a3-8df8-4d59-addb-a4ec8082fe77"
+            },
+            "Property": "BodyGroups",
+            "Value": 649
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "8d3769a3-8df8-4d59-addb-a4ec8082fe77"
+            },
+            "Property": "Model",
+            "Value": "models/citizen_human/citizen_human_female.vmdl"
           }
         ],
         "MovedObjects": []
@@ -94,12 +232,12 @@
       }
     },
     {
-      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "__guid": "b369ca82-3f39-45cc-9265-f57fb788c9dc",
       "__version": 2,
       "Flags": 0,
-      "Name": "Camera",
-      "Position": "-407.3889,499.6346,-236537.4",
-      "Rotation": "0.03778781,-0.1222783,0.292826,0.9475616",
+      "Name": "Player Manager",
+      "Position": "449.9653,146.33,-214.2194",
+      "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
@@ -110,76 +248,8 @@
       "OwnerTransfer": 1,
       "Components": [
         {
-          "__type": "Sandbox.CameraComponent",
-          "__guid": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
-          "__enabled": true,
-          "Flags": 0,
-          "BackgroundColor": "0.33333,0.46275,0.52157,1",
-          "ClearFlags": "All",
-          "EnablePostProcessing": true,
-          "FieldOfView": 90,
-          "FovAxis": "Horizontal",
-          "IsMainCamera": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Orthographic": false,
-          "OrthographicHeight": 1204,
-          "PostProcessAnchor": null,
-          "Priority": 1,
-          "RenderExcludeTags": "viewer",
-          "RenderTags": "",
-          "RenderTexture": null,
-          "TargetEye": "None",
-          "Viewport": "0,0,1,1",
-          "ZFar": 10000,
-          "ZNear": 10
-        },
-        {
-          "__type": "Sandbox.Bloom",
-          "__guid": "d73ef723-c888-41d4-802e-f797c79318be",
-          "__enabled": true,
-          "Flags": 0,
-          "__version": 1,
-          "Filter": "Bilinear",
-          "Gamma": 2.2,
-          "Mode": "Additive",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Strength": 0.5,
-          "Threshold": 1.25,
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.Tonemapping",
-          "__guid": "9d76f362-7227-40eb-a189-69353c780c46",
-          "__enabled": true,
-          "Flags": 0,
-          "__version": 3,
-          "AutoExposureEnabled": true,
-          "ExposureCompensation": 0,
-          "ExposureMethod": "RGB",
-          "MaximumExposure": 2,
-          "MinimumExposure": 1,
-          "Mode": "HableFilmic",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Rate": 1
-        },
-        {
-          "__type": "Sandbox.Sharpen",
-          "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
+          "__type": "PlayerManager",
+          "__guid": "46216b38-6953-4e4e-bfa0-6de14aa96b21",
           "__enabled": true,
           "Flags": 0,
           "OnComponentDestroy": null,
@@ -187,9 +257,7 @@
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Scale": 0.2,
-          "TexelSize": 1
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -399,146 +467,6 @@
           "Children": []
         }
       ]
-    },
-    {
-      "__guid": "a690bdf6-56e8-4642-8d64-7245f7fa8f2e",
-      "__version": 2,
-      "__Prefab": "prefabs/player.prefab",
-      "__PrefabInstancePatch": {
-        "AddedObjects": [
-          {
-            "Id": {
-              "Type": "Component",
-              "IdValue": "3e0e5bd7-1483-4b53-8e87-b96268889394"
-            },
-            "Parent": {
-              "Type": "GameObject",
-              "IdValue": "2fdbb03e-858e-453e-9369-2847087ee641"
-            },
-            "PreviousElement": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "ContainerProperty": "Components",
-            "IsContainerArray": true,
-            "Data": {
-              "__type": "PlayerHealth",
-              "__guid": "3e0e5bd7-1483-4b53-8e87-b96268889394",
-              "__enabled": true,
-              "Flags": 0,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Player": {
-                "_type": "component",
-                "component_id": "d3094ecb-29da-45f8-bd5c-4c5726f02960",
-                "go": "2fdbb03e-858e-453e-9369-2847087ee641",
-                "component_type": "PlayerController"
-              },
-              "PlayerInfo": {
-                "_type": "component",
-                "component_id": "01e2e19e-2a9c-4581-bff7-af930a871f64",
-                "go": "2fdbb03e-858e-453e-9369-2847087ee641",
-                "component_type": "PlayerInfo"
-              }
-            }
-          }
-        ],
-        "RemovedObjects": [],
-        "PropertyOverrides": [
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "2fdbb03e-858e-453e-9369-2847087ee641"
-            },
-            "Property": "Name",
-            "Value": "Player - Jon Beers"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "2fdbb03e-858e-453e-9369-2847087ee641"
-            },
-            "Property": "Position",
-            "Value": "-200.4328,641.0517,-236548.1"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "2fdbb03e-858e-453e-9369-2847087ee641"
-            },
-            "Property": "NetworkMode",
-            "Value": 1
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "Property": "Age",
-            "Value": 44
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "Property": "Bank",
-            "Value": 2000
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "Property": "Cash",
-            "Value": 500
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "Property": "Health",
-            "Value": 100
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "Property": "PlayerName",
-            "Value": "Jonny Beers"
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "01e2e19e-2a9c-4581-bff7-af930a871f64"
-            },
-            "Property": "Rank",
-            "Value": "User"
-          }
-        ],
-        "MovedObjects": []
-      },
-      "__PrefabIdToInstanceId": {
-        "2fdbb03e-858e-453e-9369-2847087ee641": "a690bdf6-56e8-4642-8d64-7245f7fa8f2e",
-        "d3094ecb-29da-45f8-bd5c-4c5726f02960": "3dc7234e-a531-4d94-a54e-8438cfa8b42f",
-        "40ede9b2-43e3-4656-80e0-3d505640d550": "b59809c0-afbc-4a35-b8c3-be75e7315484",
-        "5b2bd3d6-865a-4a3a-aefd-14288af4b81c": "f7c30e2b-b315-4d0d-ab25-16bcf0e3b184",
-        "42f8b3a2-5f8e-4b03-9369-419d8d86275d": "6cfe966c-e4cc-49c0-bab8-aac13cc301e1",
-        "70c26177-ed7b-4211-89d2-02f11e4c1d1d": "fab8a270-2f2f-483f-95d5-cfe1e4cbd6d9",
-        "eb1ea5c9-41fd-411d-a2ea-719be4ad2aa0": "dacb4f8f-af0e-43ad-ba3d-b6b835cd3e98",
-        "01e2e19e-2a9c-4581-bff7-af930a871f64": "87ed6b8b-3625-4894-8666-df46544449a4",
-        "2f67b9a1-cc15-4b6b-bf8b-ea2e45f81bb0": "361a1ced-3779-452a-8754-26d7049492f6",
-        "8d3769a3-8df8-4d59-addb-a4ec8082fe77": "20232370-7e4c-40a4-9b38-0f0d3a8a2aa1",
-        "00b76b4f-2f5f-4dff-b893-5f123fef03e8": "8daf27d6-3adb-4576-be1b-c0ae20d2458c",
-        "612f9716-3f83-4d0e-8179-1ea23260ccbf": "41e3c201-8630-4812-b272-a03feafd9229",
-        "5e395783-0adf-48f6-ae8f-d01b5c478ab5": "cd9f18a5-1fe2-4428-b90a-44f6375fa09b"
-      }
     },
     {
       "__guid": "46874f21-6b73-401d-80ef-8ec1f76d74b6",
@@ -843,6 +771,107 @@
           "Children": []
         }
       ]
+    },
+    {
+      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "-407.3889,499.6346,-236537.4",
+      "Rotation": "0.03778781,-0.1222783,0.292826,0.9475616",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
+          "__enabled": true,
+          "Flags": 0,
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "EnablePostProcessing": true,
+          "FieldOfView": 90,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "PostProcessAnchor": null,
+          "Priority": 1,
+          "RenderExcludeTags": "viewer",
+          "RenderTags": "",
+          "RenderTexture": null,
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        },
+        {
+          "__type": "Sandbox.Bloom",
+          "__guid": "d73ef723-c888-41d4-802e-f797c79318be",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 1,
+          "Filter": "Bilinear",
+          "Gamma": 2.2,
+          "Mode": "Additive",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Strength": 0.5,
+          "Threshold": 1.25,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.Tonemapping",
+          "__guid": "9d76f362-7227-40eb-a189-69353c780c46",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 3,
+          "AutoExposureEnabled": true,
+          "ExposureCompensation": 0,
+          "ExposureMethod": "RGB",
+          "MaximumExposure": 2,
+          "MinimumExposure": 1,
+          "Mode": "HableFilmic",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Rate": 1
+        },
+        {
+          "__type": "Sandbox.Sharpen",
+          "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
+          "__enabled": true,
+          "Flags": 0,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Scale": 0.2,
+          "TexelSize": 1
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
@@ -864,13 +893,13 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
-      },
       "Sandbox.Clutter.ClutterGridSystem": {
         "Storage": {
-          "$blob": "9289e48c-dffb-4778-a070-7917304629bb"
+          "$blob": "95cab781-038c-4c37-8b98-46e3b8611c8d"
         }
+      },
+      "Sandbox.MovieMaker.MovieRecorderSystem": {
+        "DisableClientRecording": false
       }
     }
   },

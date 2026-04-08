@@ -9,6 +9,7 @@ public sealed class PlayerInfo : Component
     [Property, Sync] public float Bank { get; set; }
     [Property, Sync] public float Health { get; set; }
     [Property, Sync] public float Armor { get; set; }
+    [Property, Sync] public string Gender { get; set; }
 
     // ✅ Holds the loaded character data for this player
     public PlayerData CharacterData { get; private set; }
@@ -37,6 +38,7 @@ public sealed class PlayerInfo : Component
             Age = data.Age;
             Cash = data.Cash;
             Bank = data.Bank;
+            Gender = data.Gender;
         }
     }
 }

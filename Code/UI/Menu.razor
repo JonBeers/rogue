@@ -85,36 +85,17 @@
 
     protected override void OnStart()
     {
-        MenuMusic(true);
-
         CurrentCharacter = PlayerData.Load(Game.SteamId);
 
         if (CurrentCharacter != null)
         {
-            Log.Info($"Welccome back {CurrentCharacter.FirstName + CurrentCharacter.LastName}");
+            // Log.Info($"Welccome back {CurrentCharacter.FirstName + CurrentCharacter.LastName}");
         }
     }
 
     private void SwitchScreen(Screen screen)
     {
         currentScreen = screen;
-    }
-
-
-    private void MenuMusic(bool isOn)
-    {
-        
-        var music = MusicPlayer.Play(FileSystem.Mounted, "sounds/menu.mp3");
-        if (isOn)
-        {
-            music.Volume = 0.3f;
-            music.Repeat = true;
-        }
-        else
-        {
-            music.Stop();
-        }
-
     }
 
     public void CreateCharacter()
@@ -124,7 +105,7 @@
             string.IsNullOrWhiteSpace(AgeEntry.Value?.ToString()) || 
             string.IsNullOrWhiteSpace(GenderEntry.Value?.ToString()) )
         {
-            Log.Info("Fill in the entries!");
+            // Log.Info("Fill in the entries!");
             return;
         }
         else
@@ -148,8 +129,7 @@
         {
             Session.PendingCharacter = CurrentCharacter;
             Scene.LoadFromFile("scenes/main.scene");
-            MenuMusic(false);
-            Log.Info("Transfered Current Character to Static Pending Character");
+            // Log.Info("Transfered Current Character to Static Pending Character");
         }
         else
         {

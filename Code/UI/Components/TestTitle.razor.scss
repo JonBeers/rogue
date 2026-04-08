@@ -1,0 +1,58 @@
+@import "UI/Globals/Animations.scss";
+@import "UI/Globals/Global.scss";
+
+TestTitle
+{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+
+    .icon
+    {
+        position: relative;      /* Add this */
+        padding: .5rem;
+        height: auto;
+        width: 100px;
+        background-color: transparent;
+        border-radius: .6rem;
+        z-index: 0;   /* Establishes stacking context */
+
+        img
+        {
+            width: 100%;
+        }
+
+        .center-icon
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;          /* Adjust this to control icon size relative to triangle */
+            height: auto;
+            z-index: 1;
+        }
+    }
+
+    .info
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .heading
+    {
+        color: $accent;
+        font-size: 26px;
+        font-weight: 800;
+    }
+
+    .description
+    {
+        color: white;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+}

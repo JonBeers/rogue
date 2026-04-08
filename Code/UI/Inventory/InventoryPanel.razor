@@ -1,0 +1,116 @@
+@using Microsoft.VisualBasic
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+    <div class="main">
+        <div class="character">
+            <TestTitle
+                @Icon="male.png"
+                @Heading="Body"
+            />
+
+            <div class="skeleton">
+                <img src="images/body.png" class="body" />
+            </div>
+
+            <div class="personal-info">
+
+                <h3>Personal Information</h3>
+
+                <div class="section-one">
+                    <div class="vehicle">
+                        <div class="label">Personal Vehicle</div>
+                        <div class="value">N/A</div>
+                    </div>
+                    <div class="rank">
+                        <div class="label">Rank</div>
+                        <div class="value">@(playerInfo?.Rank ?? "N/A")</div>
+                    </div>
+                </div>
+
+                <div class="section-two">
+                    <div class="phone">
+                        <div class="label">Phone Number</div>
+                        <div class="value">3545 9320</div> 
+                    </div>
+                    <div class="house">
+                        <div class="label">House Location</div>
+                        <div class="value">N/A</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="inventory">
+
+            <div class="player">
+
+                @{
+                    var totalWeight = inventory?.GetItems()?.Sum(x => x.Weight) ?? 0f;
+                }
+
+                <TestTitle 
+                    Icon="male.png" 
+                    Heading="Player"
+                    Description="@totalWeight / @PlayerMaxWeight"
+                />
+
+                <div class="slots">
+                    @for (int i = 0; i < PlayerSlots; i++)
+                    {
+                        var itemId = i < inventory?.ItemIds?.Count ? inventory.ItemIds[i] : null;
+                        var item = itemId != null ? ItemDatabase.Items.FirstOrDefault(x => x.Id == itemId) : null;
+
+                        <div class="slot">
+                            @if (i < 5)
+                            {
+                                <div class="hotbar-number">@(i + 1)</div>
+                            }
+
+                            @if (item != null)
+                            {
+                                <img src="@item.ImagePath" alt="@item.Name" />
+                            }
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</root>
+
+@code
+{
+    public PlayerInfo playerInfo {get; set;}
+    public int PlayerSlots = 15;
+    public float PlayerMaxWeight = 120f; // Max weight the player can carry without a backpack
+    private bool PlayerInfoFound = false;
+    private bool PlayerInventoryFound = false;
+
+    public Inventory inventory {get; set;}
+
+    protected override void OnStart()
+    {
+        Mouse.Visibility = MouseVisibility.Visible;
+    }
+
+    protected override void OnUpdate()
+    {
+        if (PlayerInfoFound && PlayerInventoryFound) return;
+            playerInfo = Scene.GetAllComponents<PlayerInfo>().FirstOrDefault();
+            inventory = Scene.GetAllComponents<Inventory>().FirstOrDefault();
+        if (playerInfo != null && inventory != null)
+        {
+            PlayerInfoFound = true;
+            PlayerInventoryFound = true;
+        }
+    }
+
+
+}
