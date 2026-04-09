@@ -44,7 +44,16 @@ public static class ItemDatabase
             ModelPath = "models/sword.vmdl_c",
             ImagePath = "images/inventory/weapon_knife.png",
             Type = Item.ItemType.Weapon,
-            Weight = .2f
+            Weight = 1f
+        },
+        new Item {
+            Id = "phone",
+            Name = "Mobile Phone",
+            Description = "Used for communication.",
+            ModelPath = "models/sword.vmdl_c",
+            ImagePath = "images/inventory/purple_phone.png",
+            Type = Item.ItemType.Misc,
+            Weight = .8f
         },
     };
 }

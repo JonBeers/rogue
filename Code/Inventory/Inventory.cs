@@ -33,6 +33,7 @@ public sealed class Inventory : Component
     protected override void OnStart()
     {
 		AddItem("weapon_knife");
+		AddItem("phone");
     }
 
 }

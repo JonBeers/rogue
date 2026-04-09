@@ -1,6 +1,7 @@
 @using Microsoft.VisualBasic
 @using Sandbox;
 @using Sandbox.UI;
+@using System;
 @inherits PanelComponent
 @namespace Sandbox
 
@@ -64,8 +65,14 @@
                     {
                         var itemId = i < inventory?.ItemIds?.Count ? inventory.ItemIds[i] : null;
                         var item = itemId != null ? ItemDatabase.Items.FirstOrDefault(x => x.Id == itemId) : null;
+                        var index = i + 1;
 
-                        <div class="slot">
+                        <div class="slot @(dragStartIndex == index ? "dragging" : "") @(hoveredIndex == index && dragStartIndex != null ? "hovered" : "")"
+                            onmousedown="@(() => OnSlotMouseDown(index))"
+                            onmouseup="@(() => OnSlotMouseUp(index))"
+                            onmouseover="@(() => OnSlotMouseOver(index))"
+                        >
+
                             @if (i < 5)
                             {
                                 <div class="hotbar-number">@(i + 1)</div>
@@ -79,7 +86,6 @@
                     }
                 </div>
 
-
             </div>
         </div>
     </div>
@@ -87,13 +93,13 @@
 
 @code
 {
-    public PlayerInfo playerInfo {get; set;}
+    public PlayerInfo playerInfo { get; set; }
     public int PlayerSlots = 15;
-    public float PlayerMaxWeight = 120f; // Max weight the player can carry without a backpack
+    public float PlayerMaxWeight = 50f;
     private bool PlayerInfoFound = false;
     private bool PlayerInventoryFound = false;
 
-    public Inventory inventory {get; set;}
+    public Inventory inventory { get; set; }
 
     protected override void OnStart()
     {
@@ -102,9 +108,13 @@
 
     protected override void OnUpdate()
     {
+        
+
         if (PlayerInfoFound && PlayerInventoryFound) return;
-            playerInfo = Scene.GetAllComponents<PlayerInfo>().FirstOrDefault();
-            inventory = Scene.GetAllComponents<Inventory>().FirstOrDefault();
+
+        playerInfo = Scene.GetAllComponents<PlayerInfo>().FirstOrDefault();
+        inventory = Scene.GetAllComponents<Inventory>().FirstOrDefault();
+
         if (playerInfo != null && inventory != null)
         {
             PlayerInfoFound = true;
@@ -112,5 +122,54 @@
         }
     }
 
+    private int? dragStartIndex = null;
+    private int? hoveredIndex = null;
 
+    private void OnSlotMouseOver(int index)
+    {
+        hoveredIndex = index;
+    }
+
+    private void OnSlotMouseDown(int index)
+    {
+        dragStartIndex = index;
+        Log.Info($"Starting Index: {dragStartIndex}");
+    }
+
+    private void OnSlotMouseUp(int index)
+    {
+        if (dragStartIndex == null) return;
+
+        var endIndex = hoveredIndex ?? index;
+
+        Log.Info($"Swapping {dragStartIndex} -> {endIndex}");
+
+        if (dragStartIndex != endIndex)
+        {
+            SwapItems(dragStartIndex.Value - 1, endIndex - 1);
+        }
+
+        dragStartIndex = null;
+        hoveredIndex = null;
+    }
+
+    private void SwapItems(int fromIndex, int toIndex)
+    {
+        if (inventory?.ItemIds == null) return;
+
+        var items = inventory.ItemIds;
+
+        // Pad the list if it's shorter than PlayerSlots
+        while (items.Count < PlayerSlots)
+        {
+            items.Add(null);
+        }
+
+        if (fromIndex < 0 || fromIndex >= items.Count || toIndex < 0 || toIndex >= items.Count)
+            return;
+
+        var temp = items[fromIndex];
+        items[fromIndex] = items[toIndex];
+        items[toIndex] = temp;
+    }
 }
